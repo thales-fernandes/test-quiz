@@ -1,5 +1,5 @@
 [![tests](https://github.com/andrehora/test-quiz/actions/workflows/tests.yml/badge.svg)](https://github.com/andrehora/test-quiz/actions/workflows/tests.yml)
-
+### Thales Augusto Rocha Fernandes
 # Testing Quiz
 
 Neste exercício, iremos melhorar os testes de unidade de sistema de quiz.
