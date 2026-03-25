@@ -117,3 +117,28 @@ def test_correct_selected_choices_exceeds_max_selections():
     
     with pytest.raises(Exception, match='Cannot select more than 1 choices'):
         question.correct_selected_choices([choice1.id, choice2.id])
+
+@pytest.fixture
+def question_with_choices():
+    
+    question = Question(title="Qual a linguagem de programação deste projeto?", max_selections=1)
+    question.add_choice("Java", is_correct=False)
+    question.add_choice("Python", is_correct=True)
+    question.add_choice("JavaScript", is_correct=False)
+    return question
+
+def test_fixture_um(question_with_choices):
+    
+    assert question_with_choices.title == "Qual a linguagem de programação deste projeto?"
+    assert len(question_with_choices.choices) == 3
+    assert question_with_choices.max_selections == 1
+
+def test_fixture_dois(question_with_choices):
+
+    correct_ids = question_with_choices._find_correct_choice_ids()
+    
+    assert len(correct_ids) == 1
+    assert correct_ids[0] == 2
+    
+    resultado = question_with_choices.correct_selected_choices([2])
+    assert resultado == [2]
